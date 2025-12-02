@@ -1,6 +1,10 @@
-import { Link } from 'react-router';
+import { Link, useRouteLoaderData } from 'react-router';
+import UserMenu from './UserMenu';
 
 const Header = () => {
+  const data = useRouteLoaderData('root');
+  const isUser = data && data.role === 'user';
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-base-300 bg-base-100/80 backdrop-blur-md transition-all">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -9,15 +13,15 @@ const Header = () => {
             Debunk
           </span>
         </Link>
-
-        <nav className="flex items-center gap-4">
-          <Link to="/login" className="btn btn-ghost btn-sm">
-            Zaloguj się
-          </Link>
-          <Link to="/register" className="btn btn-primary btn-sm">
-            Załóż konto
-          </Link>
-        </nav>
+        {isUser ? (
+          <UserMenu />
+        ) : (
+          <nav className="flex items-center gap-4">
+            <Link to="/login" className="btn btn-ghost-otline btn-sm">
+              Zaloguj się
+            </Link>
+          </nav>
+        )}
       </div>
     </header>
   );

@@ -10,11 +10,13 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (fetcher.state === 'idle' && status === 401 && formRef.current) {
-      formRef.current.reset();
-      const emailInput = formRef.current.querySelector(
-        'input[name="email"]'
+      const passwordInput = formRef.current.querySelector(
+        'input[name="password"]'
       ) as HTMLInputElement;
-      emailInput.focus();
+      if (passwordInput) {
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
     }
   }, [fetcher.state, status]);
 

@@ -5,12 +5,15 @@ import MainLayout from '@layouts/MainLayout';
 import App from '../App';
 import authLoader from './authLoader';
 import AuthLayout from '@layouts/AuthLayout';
-import LoginPage from '@pages/auth/LoginPage';
+import LoginPage from '@pages/auth/login/LoginPage';
+import loginAction from '@pages/auth/login/action';
+import logoutAction from './logoutAction';
 
 export const router = createBrowserRouter([
   {
     id: 'root',
     element: <RootLayout />,
+    loader: authLoader,
     children: [
       {
         path: '/',
@@ -23,12 +26,16 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        path: 'logout',
+        action: logoutAction,
+      },
+      {
         element: <AuthLayout />,
         children: [
           {
             path: 'login',
             element: <LoginPage />,
-            action: authLoader,
+            action: loginAction,
           },
         ],
       },
