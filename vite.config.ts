@@ -11,13 +11,6 @@ export default defineConfig({
         target: 'https://debunk-api.onrender.com',
         changeOrigin: true,
         secure: false,
-        configure: (proxy, _options) => {
-          proxy.on('proxyReq', (proxyReq, req, _res) => {
-            console.log(
-              `[Vite Proxy] ${req.method} ${req.url} -> ${proxyReq.path}`
-            );
-          });
-        },
       },
     },
   },
