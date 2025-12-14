@@ -1,4 +1,5 @@
 import { api } from '@api';
+import type { ApiResponse } from './types';
 
 export interface Post {
   id: number;
@@ -13,12 +14,17 @@ export interface CreatePostData {
   content: string;
 }
 
-export const getPosts = async (): Promise<Post[]> => {
-  const response = await api.get('/api/posts');
-  return response.data;
+const ROUTE = '/api/v1/posts';
+
+export const getPosts = async (): Promise<ApiResponse<Post[]>> => {
+  const response = await api.get(ROUTE);
+  return response.data.data;
 };
 
 export const createPost = async (data: CreatePostData): Promise<Post> => {
-  const response = await api.post('/api/posts', data);
-  return response.data;
+  const response = await api.post(ROUTE, {
+    title: data.title,
+    description: data.content,
+  });
+  return response.data.data;
 };

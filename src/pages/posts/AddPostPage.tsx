@@ -1,14 +1,6 @@
-import { useRouteLoaderData, Navigate } from 'react-router';
 import AddPostForm from '@components/AddPostForm';
 
 const AddPostPage = () => {
-  const data = useRouteLoaderData('root');
-  const isUser = data && data.role === 'user';
-
-  if (!isUser) {
-    return <Navigate to="/login" />;
-  }
-
   return (
     <div className="flex justify-center items-start py-8">
       <section className="card card-lg w-full max-w-xl bg-base-100 shadow-xl">
