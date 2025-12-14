@@ -17,7 +17,7 @@ const PostCard = ({ post }: PostCardProps) => {
         <h2 className="card-title">{post.title}</h2>
         <p className="text-base-content/80">{post.content}</p>
         <div className="flex justify-between items-center mt-4 text-sm text-base-content/60">
-          <span>{post.authorName}</span>
+          <span>{post.user.email}</span>
           <span>{formattedDate}</span>
         </div>
       </div>

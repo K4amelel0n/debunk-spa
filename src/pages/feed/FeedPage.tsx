@@ -3,7 +3,26 @@ import type { Post } from '@api/posts';
 import PostCard from '@components/PostCard';
 
 const FeedPage = () => {
-  const posts = useLoaderData() as Post[];
+  const { posts, error } = useLoaderData() as {
+    posts: Post[] | null;
+    error?: string;
+  };
+
+  if (error) {
+    return (
+      <div className="alert alert-error">
+        <span>{error}</span>
+      </div>
+    );
+  }
+
+  if (!posts) {
+    return (
+      <div className="alert alert-error">
+        <span>Wystąpił błąd podczas ładowania postów.</span>
+      </div>
+    );
+  }
 
   return (
     <section className="flex flex-col gap-6">

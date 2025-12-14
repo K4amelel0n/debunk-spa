@@ -3,13 +3,14 @@ import type { ApiResponse } from './types';
 
 const ROUTE = '/api/v1/auth';
 
+export type User = {
+  id: number;
+  email: string;
+  name: string | null;
+};
+
 type LoginResponse = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-  };
+  user: User;
 };
 
 export const login = async (

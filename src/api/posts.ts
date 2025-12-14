@@ -1,11 +1,12 @@
 import { api } from '@api';
 import type { ApiResponse } from './types';
+import type { User } from './auth';
 
 export interface Post {
   id: number;
   title: string;
   content: string;
-  authorName: string;
+  user: User;
   createdAt: string;
 }
 
