@@ -1,5 +1,4 @@
-import { createBrowserRouter } from 'react-router';
-
+import { createBrowserRouter } from 'react-router'; 
 import RootLayout from '@layouts/RootLayout';
 import MainLayout from '@layouts/MainLayout';
 import authLoader from './authLoader';
@@ -18,11 +17,11 @@ export const router = createBrowserRouter([
   {
     id: 'root',
     element: <RootLayout />,
+    loader: authLoader, 
     children: [
       {
         path: '/',
         element: <MainLayout />,
-        loader: authLoader,
         children: [
           {
             index: true,
