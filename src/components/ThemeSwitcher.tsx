@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
 
+const THEME_KEY = 'debunk_theme';
+
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem(THEME_KEY);
+    return (saved === 'dark' || saved === 'light') ? saved : 'light';
+  });
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }, []);
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(THEME_KEY, theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

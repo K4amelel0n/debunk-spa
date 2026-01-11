@@ -1,12 +1,14 @@
-import { getPosts } from '@api/posts';
+import type { Post } from '@api/posts';
+import { mockPosts } from '../../api/mockData';
 
-const feedLoader = async () => {
-  try {
-    const posts = await getPosts();
-    return { posts: posts };
-  } catch (error) {
-    return { error: 'Błąd podczas ładowania postów.' };
+const USE_MOCK_DATA = true;
+
+const feedLoader = async (): Promise<{ posts: Post[] } | { error: string }> => {
+  if (USE_MOCK_DATA) {
+    return { posts: mockPosts };
   }
+
+  return { posts: mockPosts };
 };
 
 export default feedLoader;

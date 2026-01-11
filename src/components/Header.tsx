@@ -1,8 +1,10 @@
-import { Link, useLoaderData } from 'react-router';
+import { Link, useRouteLoaderData } from 'react-router';
 import UserMenu from './UserMenu';
+import ThemeSwitcher from './ThemeSwitcher';
+import type { User } from '@api/auth';
 
 const Header = () => {
-  const data = useLoaderData();
+  const data = useRouteLoaderData('root') as { user: User | null } | undefined;
   const isUser = data && data.user;
 
   return (
@@ -13,28 +15,26 @@ const Header = () => {
             Debunk
           </span>
         </Link>
-        {isUser ? (
-          <nav className="flex items-center gap-4">
-            <Link to="/posts/add" className="btn btn-primary btn-sm">
-              Dodaj post
-            </Link>
-            <UserMenu />
-          </nav>
-        ) : (
-          <div className="flex gap-4 justify-space-between">
+        <div className="flex items-center gap-4">
+          <ThemeSwitcher />
+          {isUser ? (
             <nav className="flex items-center gap-4">
-              <Link to="/login" className="btn btn-ghost-otline btn-sm">
+              <Link to="/posts/add" className="btn btn-primary btn-sm">
+                Dodaj post
+              </Link>
+              <UserMenu />
+            </nav>
+          ) : (
+            <nav className="flex items-center gap-2">
+              <Link to="/login" className="btn btn-ghost btn-sm">
                 Zaloguj się
               </Link>
-            </nav>
-
-            <nav className="flex items-center gap-4">
               <Link to="/register" className="btn btn-primary btn-sm">
                 Załóż konto
               </Link>
             </nav>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </header>
   );

@@ -12,27 +12,40 @@ import logoutAction from './logoutAction';
 import AddPostPage from '@pages/posts/AddPostPage';
 import addPostAction from '@pages/posts/addPostAction';
 import FeedPage from '@pages/feed/FeedPage';
-import feedLoader from '@pages/feed/loader';
+import PostDetailPage from '@pages/posts/PostDetailPage';
+import EditPostPage from '@pages/posts/EditPostPage';
+import UserProfilePage from '@pages/profile/UserProfilePage';
 
 export const router = createBrowserRouter([
   {
     id: 'root',
     element: <RootLayout />,
+    loader: authLoader,
     children: [
       {
         path: '/',
         element: <MainLayout />,
-        loader: authLoader,
         children: [
           {
             index: true,
             element: <FeedPage />,
-            loader: feedLoader,
           },
           {
             path: 'posts/add',
             element: <AddPostPage />,
             action: addPostAction,
+          },
+          {
+            path: 'posts/:id',
+            element: <PostDetailPage />,
+          },
+          {
+            path: 'posts/:id/edit',
+            element: <EditPostPage />,
+          },
+          {
+            path: 'profile/:id',
+            element: <UserProfilePage />,
           },
         ],
       },

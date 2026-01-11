@@ -41,6 +41,8 @@
       "@styles": ["src/styles/index.ts"],
       "@pages/*": ["src/pages/*"],
       "@pages": ["src/pages/index.ts"],
+      "@store/*": ["src/store/*"],
+      "@store": ["src/store/index.ts"],
       "@/*": ["./src/*"]
     }
   },
